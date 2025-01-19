@@ -86,10 +86,12 @@ for demo_path in demo_path_list[:]:
         # action = np.ascontiguousarray(action, dtype=np.float32)
         action = action_list[step : step + 1]
         action = np.ascontiguousarray(action, dtype=np.float32)
+        if step == 0:
+            print(action[0, 7:])
         reward, dones = env.step(action)
         frame_end = time.time()
         wait_time = cfg["environment"]["control_dt"] - (frame_end - frame_start)
-        print(wait_time)
+
         if wait_time > 0.0:
             time.sleep(wait_time)
 
